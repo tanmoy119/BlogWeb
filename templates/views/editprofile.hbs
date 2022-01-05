@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnderstandingBias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<style>
+    body {
+        background: #0779f3;
+    }
+
+    /* Input Border Color */
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #0062cc
+    }
+
+    /* Save Profile Button */
+    .profile-button {
+        background: green;
+        box-shadow: none;
+        border: none
+    }
+
+    .profile-button:hover {
+        background: rgb(1, 151, 1)
+    }
+
+    .profile-button:focus {
+        background: green;
+        box-shadow: none
+    }
+
+    /* Back to home Link */
+    .back-to-home {
+        text-decoration: none;
+    }
+    .back-to-home:hover {
+        text-decoration: underline;
+    }
+
+    /* Profile Image */
+
+    .profile-img {
+        text-align: center;
+    }
+
+    .profile-img img {
+        width: 70%;
+        height: 180px;
+    }
+
+    #small-pic {
+        width: 4%;
+        border-radius: 50%;
+    }
+
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
+
+    .profile-img .file input {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+
+</style>
+
+<body>
+    <form action="" enctype="multipart/form-data" method="PATCH" >
+    <div class="container rounded bg-white mt-5">
+            <nav class="navbar navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 30px;">
+                        Edit Profile
+                    </a>
+                </div>
+            </nav>
+            <div class="row">
+                <hr>
+            <div class="col-md-4 mt-5">
+                <div class="profile-img">
+                    <img src="./img2/{{avatar}}"
+                            alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-row align-items-center back"><i
+                                class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                            <a href="../profile" class="back-to-home"><h6>&nbsp;Back to home</h6></a>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h2>Personal info</h2>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><input type="text" class="form-control" value="{{name}}" placeholder="first name"></div>
+                        <div class="col-md-6"><input type="text" class="form-control" value="{{userid}}" placeholder="User Id">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><input type="email" value="{{email}}" class="form-control" placeholder="Email"></div>
+                        <div class="col-md-6"><input type="number" value="{{number}}" class="form-control" placeholder="Phone number"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><input type="text" value="{{profession}}" class="form-control" placeholder="profession"></div>
+                        <div class="col-md-6"><input type="text" value="{{country}}" class="form-control" placeholder="Country">
+                        </div>
+                    </div>
+                    {{!-- <div class="row mt-3">
+                        <div class="col-md-6"><input type="password" class="form-control" placeholder="User Id"></div>
+                        <div class="col-md-6"><input type="password" class="form-control" placeholder="confirm password"></div>
+                    </div> --}}
+                    <div class="mt-5 text-right"><input class="btn btn-primary profile-button" type="submit" value="Save Changes" > 
+                    <a href="../profile" ><button class="btn btn-secondary" type="button" >Cancel</button></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+</body>
+
+</html>

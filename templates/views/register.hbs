@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnderstandingBias</title>
+  <!-- Font Awsome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  {{!-- <link rel="stylesheet" href="css/register.css"> --}}
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, rgb(170, 211, 172), rgb(4, 219, 4));
+    }
+
+    ::selection {
+      /* Selected text font color, background color change */
+      color: #fff;
+      background: #5372F0;
+    }
+
+    .wrapper {
+      /* Change the full body of the form */
+      width: 420px;
+      padding: 30px 30px 50px 30px;
+      background: #fff;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper header {
+      /* Change the heading "Signup Form" */
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    .wrapper form {
+      margin: 40px 0;
+    }
+
+    form .field {
+      /* Input field height */
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    form .field.shake {
+      /* Shake input filed */
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        margin-left: 0px;
+      }
+
+      20%,
+      80% {
+        margin-left: -12px;
+      }
+
+      40%,
+      60% {
+        margin-left: 12px;
+      }
+    }
+
+    form .field .input-area {
+      /* input filed */
+      height: 50px;
+      width: 100%;
+      position: relative;
+    }
+
+    form input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      padding: 0 45px;
+      font-size: 18px;
+      background: none;
+      caret-color: #5372F0;
+      border-radius: 5px;
+      border: 1px solid #bfbfbf;
+      border-bottom-width: 2px;
+      transition: all 0.2s ease;
+    }
+
+    form .field input:focus,
+    form .field.valid input {
+      /* Valid input*/
+      border-color: #2c52ed;
+    }
+
+    form .field.shake input,
+    form .field.error input {
+      /* invalid input*/
+      border-color: #dc3545;
+    }
+
+    .field .input-area i {
+      /* Icon position */
+      position: absolute;
+      top: 50%;
+      font-size: 18px;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .input-area .icon {
+      /* Font Icon */
+      left: 15px;
+      color: #2c52ed;
+      transition: color 0.2s ease;
+    }
+
+    .input-area .error-icon {
+      /* Error Icon */
+      right: 15px;
+      color: #dc3545;
+    }
+
+    .input-area .valid-icon {
+      /* valid Icon */
+      right: 15px;
+      color: green;
+    }
+
+    form input:focus~.icon,
+    form .field.valid .icon {
+      /* If you click the input filed the color will be changed (if it is valid) */
+      color: #5372F0;
+    }
+
+    form .field.shake input:focus~.icon,
+    form .field.error input:focus~.icon {
+      /* If you click the input filed the color will be changed (if it is invalid) */
+      color: #bfbfbf;
+    }
+
+    form input::placeholder {
+      /* placeholder color change */
+      color: #9e9d9d;
+      font-size: 17px;
+    }
+
+    form .field .error-txt {
+      /* Error Text color change */
+      font-size: 15px;
+      color: #dc3545;
+      text-align: left;
+      margin-top: 5px;
+    }
+
+    form .field .error {
+      display: none;
+    }
+
+    form .field .valid {
+      display: none;
+    }
+
+    form .field.shake .error,
+    form .field.error .error {
+      display: block;
+    }
+
+    form .field.valid input,
+    form .field.valid .valid {
+      /* If it is valid border color will be green */
+      display: block;
+      border-color: green;
+    }
+
+    form .pass-txt {
+      /* Change position of Forget Password*/
+      text-align: left;
+      margin-top: -10px;
+    }
+
+    .wrapper a {
+      /* Forget Password color */
+      color: #5372F0;
+      text-decoration: none;
+    }
+
+    .wrapper a:hover {
+      /* Forget Password underline*/
+      text-decoration: underline;
+    }
+
+    form input[type="submit"] {
+      /* Login Button */
+      height: 50px;
+      margin-top: 20px;
+      color: #fff;
+      padding: 0;
+      border: none;
+      background: #1540eb;
+      cursor: pointer;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+      background: #2c51e6;
+    }
+
+    @media only screen and (min-width: 280px) {
+      body {
+        height: 155vh;
+      }
+    }
+
+    @media only screen and (min-width: 300px) {
+      body {
+        height: 143vh;
+      }
+    }
+
+    @media only screen and (min-width: 350px) {
+      body {
+        height: 135vh;
+      }
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+      body {
+        height: 120vh;
+      }
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>Signup Form</header>
+    <form action="/register" enctype="multipart/form-data" method="POST">
+      <!-- Name -->
+      <div class="field name">
+        <div class="input-area">
+          <input type="text" name="urname" placeholder="User Name">
+          <i class="icon fas fa-user"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">User Name can't be blank</div>
+      </div>
+      
+
+      <!-- Name -->
+      <div class="field name">
+        <div class="input-area">
+          <input type="text" name="name" placeholder="Name">
+          <i class="icon fas fa-user"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Name can't be blank</div>
+      </div>
+      
+      <!-- Phone Number -->
+      <div class="field phno">
+        <div class="input-area">
+          <input type="number" name='number' placeholder="Phone Number">
+          <i class="icon fas fa-phone-alt"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Phone Number can't be blank</div>
+      </div>
+      
+      <!-- Email -->
+      <div class="field email">
+        <div class="input-area">
+          <input type="text" name='email' placeholder="Email Address">
+          <i class="icon fas fa-envelope"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Email can't be blank</div>
+      </div>
+      
+      <!-- Password -->
+      <div class="field password">
+        <div class="input-area">
+          <input type="password" name='pass' placeholder="Password">
+          <i class="icon fas fa-lock"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Password can't be blank</div>
+      </div>
+      
+      <!-- Confirm Password -->
+      <div class="field confirmpassword">
+        <div class="input-area">
+          <input type="password" name='cpass' placeholder="Confirm Password">
+          <i class="icon fas fa-lock"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Confirm Password can't be blank</div>
+      </div>
+      
+
+      <!-- profession -->
+      <div class="field confirmpassword">
+        <div class="input-area">
+          <input type="text" name='profession' placeholder="profession">
+          <i class="icon fas fa-user-tie"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">Profession</div>
+      </div>
+      
+
+       <!-- country -->
+      <div class="field confirmpassword">
+        <div class="input-area">
+          <input type="text" name='country' placeholder="country">
+          <i class="icon fas fa-globe-africa"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">country</div>
+      </div>
+
+        <!-- File -->
+      <div class="field confirmpassword">
+        <div class="input-area">
+          <input style="padding-top:9px ;" type="file" name='uploaded_file' >
+          <i class="icon fas fa-images"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+          <i class="valid valid-icon fas fa-check-circle"></i>
+        </div>
+        <div class="error error-txt">file</div>
+      </div>
+      
+
+     
+          {{!-- <input  name="uploaded_file" type="file"> --}}
+         
+
+      <!-- Bottom -->
+      <input type="submit" value="Signup">
+    </form>
+    <div class="sign-txt">Already have an account? <a href="/login">Login now</a></div>
+  </div>
+
+</body>
+{{!-- <script src="js/register.js"></script> --}}
+
+</html>
