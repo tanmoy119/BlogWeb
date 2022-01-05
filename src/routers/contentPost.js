@@ -46,7 +46,7 @@ adminPostRouter.get('/contentPost', auth, async (req, res)=>{
         res.status(400).send(err);
         console.log(err);
     }
-})
+})  
 
 adminPostRouter.get('/contents', async (req, res)=>{
     try {

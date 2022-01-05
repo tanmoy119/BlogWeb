@@ -91,7 +91,7 @@ adminRouter.get('/profile', auth, async (req, res)=>{
           const data = req.userData;
           res.render('profile',{
                userid:data.userid,
-               name:data.name,
+               name:data.name,            
                email:data.email,
                avatar:data.avatar,
                profession:data.profession,
