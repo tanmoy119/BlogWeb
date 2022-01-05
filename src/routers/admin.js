@@ -199,7 +199,7 @@ adminRouter.post('/register', upload.single('uploaded_file'), async (req, res)=>
      try {
             // console.log(req.body.urname);
          // console.log(req.body.name);
-          console.log(req.file.filename);
+         // console.log(req.file.filename);
         const pass = req.body.pass;
         const cpass = req.body.cpass;
         if(pass === cpass){
