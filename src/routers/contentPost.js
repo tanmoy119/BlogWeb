@@ -67,7 +67,7 @@ adminPostRouter.get('/contents', async (req, res)=>{
 adminPostRouter.get('/topDivContent', auth, async (req, res)=>{
     try {
 
-        res.send("top Div Content Post");
+        res.render("topdiv");
     
 
     } catch (err) {
@@ -124,7 +124,7 @@ adminPostRouter.post('/topDivContent', upload.single("uploaded_file"), async (re
         });
        console.log(addData);
        const saveData = await addData.save();
-       res.render('index');
+       res.render('topdiv');
 
     } catch (err) {
         res.status(400).send(err);
