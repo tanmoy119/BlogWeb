@@ -9,10 +9,11 @@ let side = "secLeft";
 
 
     const getPost = async () => {
-        const response = await fetch(`http://localhost:3000/adminContent?limit=${limit}&id=${skip}`);
+        const response = await fetch(`https://blog-web-app-first.herokuapp.com/adminContent?limit=${limit}&id=${skip}`);
 
-
+       
        var data = await response.json();
+       console.log(data);
   
 
 
@@ -44,8 +45,8 @@ data.forEach((curElm,index) => {
                                 <p>${curElm.body}
                                 </p>
 
-                                <a href="/delete/${curElm._id}" ><button >POST</button></a>
-                                <a href="/delete/${curElm._id}">profile</a>
+                                <a href="/delete?id=${curElm._id}&heading=${curElm.heading}&body=${curElm.body}&avatar=${curElm.avatar}&writer=${curElm.writer}" ><button >POST</button></a>
+                                <a href="/delete?id=${curElm._id}&heading=${curElm.heading}&body=${curElm.body}&avatar=${curElm.avatar}&writer=${curElm.writer}">profile</a>
                             </div>
                         </div>
                     </div>

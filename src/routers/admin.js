@@ -46,19 +46,19 @@ adminRouter.get('/admin', auth, async (req, res)=>{
 
 //admin Post..
 
-adminRouter.get('/delete/:id', auth, async (req, res)=>{
+adminRouter.get('/delete', auth, async (req, res)=>{
      try {
-          const id = req.params.id;
-          const response = await adminContent.find({_id:id});
-          const data = await JSON.stringify(response);
-          console.log(data);
-          console.log(data.body);
+          //const id = req.params.id;
+          //const response = await adminContent.find({_id:id});
+          //const data = await JSON.stringify(response);
+          //console.log(data);
+          //console.log(data.body);
 
           const addData = new content({
-               heading:data.heading,
-               body:data.body,
-               avatar:data.avatar,
-               writer:data.writer
+               heading:req.query.heading,
+               body:req.query.body,
+               avatar:req.query.avatar,
+               writer:req.query.writer
            });
            console.log(addData);
            const saveData = await addData.save();
