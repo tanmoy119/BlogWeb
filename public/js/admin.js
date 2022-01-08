@@ -13,7 +13,6 @@ let side = "secLeft";
 
        
        var data = await response.json();
-       console.log(data);
   
 
 

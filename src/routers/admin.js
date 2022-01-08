@@ -60,10 +60,10 @@ adminRouter.get('/delete', auth, async (req, res)=>{
                avatar:req.query.avatar,
                writer:req.query.writer
            });
-           console.log(addData);
+           //console.log(addData);
            const saveData = await addData.save();
            console.log(saveData);
-          // const ddata= await adminContent.deleteOne({_id:id});
+           const ddata= await adminContent.deleteOne({_id:id});
           res.redirect('/admin');
      } catch (err) {
           console.log(err); 
