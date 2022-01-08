@@ -48,7 +48,7 @@ adminRouter.get('/admin', auth, async (req, res)=>{
 
 adminRouter.get('/delete', auth, async (req, res)=>{
      try {
-          //const id = req.params.id;
+          const id = req.query.id;
           //const response = await adminContent.find({_id:id});
           //const data = await JSON.stringify(response);
           //console.log(data);
