@@ -149,7 +149,7 @@ adminPostRouter.get('/timelinecontents',auth, async (req, res)=>{
     var skipv= parseInt(curId);
 
        const data = await Content.find({writer}).limit(num).skip(skipv);
-       console.log(data.writer);
+      // console.log(data.writer);
        res.send(data);
 
     } catch (err) {

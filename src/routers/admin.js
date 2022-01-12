@@ -174,7 +174,7 @@ adminRouter.get('/logout', auth,async (req, res)=>{
 
 const storage = multer.diskStorage({
      destination: function (req, file, cb) {
-       cb(null, 'public/img2/')
+       cb(null, '../public/img2/')
      },
      filename: function (req, file, cb) {
        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -250,6 +250,19 @@ adminRouter.get('/profile/editprofile', auth,async (req, res)=>{
                
                
           });
+     } catch (err) {
+          console.log(err);
+     }
+})
+
+adminRouter.post('/profile/editprofile', auth, upload.single('uploaded_file'), async (req, res)=>{
+     try {
+          const data = await req.userData;
+          const _id = data._id;
+          //console.log(_id);
+          const updateData = await user.findByIdAndUpdate(_id,req.body);
+          console.log(updateData);
+          res.redirect('/profile');
      } catch (err) {
           console.log(err);
      }
