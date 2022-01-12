@@ -9,7 +9,7 @@ let side = "secLeft";
 
 
     const getPost = async () => {
-        const response = await fetch(`http://localhost:3000/contents?limit=${limit}&id=${skip}`);
+        const response = await fetch(`http://31.220.50.55/contents?limit=${limit}&id=${skip}`);
 
 
        var data = await response.json();
